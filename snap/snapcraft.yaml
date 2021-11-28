@@ -9,7 +9,7 @@ description: |
   store.
 
 grade: stable  # devel/stable
-confinement: strict  # devmode/classic/strict
+confinement: devmode  # devmode/classic/strict
 
 architectures:
   - build-on: armhf
@@ -22,13 +22,23 @@ architectures:
     run-on: amd64
 
 parts:
-  security-bear:
+  scripts-files:
     plugin: dump
-    source: https://github.com/CyBear-Jinni/Security-Bear.git
+    source: .
     override-build: |
+      rm README.md
+
+  security-bear:
+    source: https://github.com/CyBear-Jinni/Security-Bear.git
+    after:
+      - scripts-files
+    plugin: dump
+    override-build: |
+      mv ../../scripts-files/src/scripts .
+
       scripts/bashScripts/nativeExecutableMaker.sh  # Downloading dart-sdk for the correct architecture
 
-      rm -r SecurityBearDart
+      #  rm -r security_bear
 
       snapcraftctl build
 
@@ -81,6 +91,6 @@ parts:
 
 apps:
   security-bear:
-    command: main.exe $SNAP
+    command: Security-Bear $SNAP
     daemon: simple
     plugs: [network, network-bind, network-manager]
