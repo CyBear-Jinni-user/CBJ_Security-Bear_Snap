@@ -1,7 +1,7 @@
 name: security-bear
 base: core20
 version: '1.0.1'  # Just for humans, typically '1.2+git' or '1.3.2'
-summary: Single-line elevator pitch for your amazing snap # 79 char long summary
+summary: Easy way to connect to your devices for the first time through a WiFi. # 79 char long summary
 description: |
   Allowing an easy and secure way to connect to your devices and IoT for maintenance through a WiFi network.
 
@@ -109,4 +109,4 @@ apps:
   security-bear:
     command: Security-Bear $SNAP
     daemon: simple
-    plugs: [network, network-bind, network-manager, network-observe, network-control]
+    plugs: [network, network-bind, network-manager, network-observe]
