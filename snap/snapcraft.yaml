@@ -45,7 +45,7 @@ parts:
       rm README.md
 
   security-bear:
-    source: https://github.com/CyBear-Jinni/Security-Bear.git
+    source: https://github.com/CyBear-Jinni/security_bear.git
     after:
       - scripts-files
     plugin: dump
